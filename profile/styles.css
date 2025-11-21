@@ -1,0 +1,656 @@
+/*
+ * LUSH GREEN THEME V6 - CSS
+ * Enhanced with more vibrant greens, subtle background pattern, and larger, sweeping animated leaves in the background.
+ */
+
+:root {
+    --color-background: #06110A; /* Even Deeper, Richer Forest Floor Green */
+    --color-text-primary: #EBF2E8; /* Crisp, natural white for main text */
+    --color-accent-primary: #1F6B2C; /* Deep, strong Forest Green */
+    --color-accent-secondary: #4CAF50; /* Bright, lively Emerald Green for highlights/interactive elements */
+    --color-card-bg: #112014; /* Darker, slightly richer greenish card background */
+    --color-border: #3A5F45; /* Distinct but harmonious green border */
+    --color-shadow: rgba(31, 107, 44, 0.6); /* More intense green shadow */
+    --font-primary: 'Oxanium', sans-serif;
+    --font-secondary: 'Orbitron', sans-serif;
+}
+
+/* --- Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    /* Background with repeating leaf pattern */
+    background-color: var(--color-background);
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 0c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zM0 10c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zM20 10c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zM10 20c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2z' fill='%231a311c' opacity='0.5' /%3E%3Cpath d='M10 0c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zM0 10c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zM20 10c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zM10 20c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2z' fill='%231a311c' opacity='0.5' /%3E%3C/svg%3E"); /* Subtle leaf-like dots pattern */
+    background-attachment: fixed;
+    background-size: 80px 80px;
+
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    transition: background-color 0.8s ease-in-out, color 0.8s ease-in-out;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Remove original background elements */
+.stars, .nebula-bg {
+    display: none;
+}
+
+/* --- Animated Leaves (Larger, Sweeping Background Leaves) --- */
+.leaf-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0; /* Ensures leaves are behind content */
+    overflow: hidden;
+    /* Removed border and shadow from container as leaves are now bigger and more dominant */
+}
+
+.leaf {
+    position: absolute;
+    width: 40px; /* Much larger leaves */
+    height: 40px;
+    background-color: rgba(76, 175, 80, 0.3); /* Slightly more transparent for bigger elements */
+    border-radius: 50% 0; /* Creates a leaf shape */
+    transform: rotate(45deg);
+    animation-name: fallAndSway; /* New animation for bigger, sweeping effect */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0;
+    filter: blur(1px); /* Soften the edges for a more natural look */
+}
+
+/* Keyframe animation for larger leaves to fall and sway */
+@keyframes fallAndSway {
+    0% {
+        transform: translateY(-10%) translateX(0) rotate(45deg) scale(0.7);
+        opacity: 0;
+    }
+    10% { opacity: 0.6; } /* Max opacity */
+    50% {
+        transform: translateY(50vh) translateX(5vw) rotate(90deg) scale(1); /* Sway slightly horizontally */
+        opacity: 0.7;
+    }
+    90% { opacity: 0.1; } /* Fade out towards the bottom */
+    100% {
+        transform: translateY(110%) translateX(-10vw) rotate(135deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Individual leaf animations for staggered effect and path variation */
+.leaf:nth-child(1) { left: 10%; animation-duration: 20s; animation-delay: 0s; }
+.leaf:nth-child(2) { left: 25%; animation-duration: 25s; animation-delay: 3s; width: 35px; height: 35px; background-color: rgba(60, 150, 60, 0.4); }
+.leaf:nth-child(3) { left: 40%; animation-duration: 18s; animation-delay: 6s; }
+.leaf:nth-child(4) { left: 55%; animation-duration: 22s; animation-delay: 9s; width: 42px; height: 42px; background-color: rgba(90, 190, 90, 0.3); }
+.leaf:nth-child(5) { left: 70%; animation-duration: 19s; animation-delay: 1s; }
+.leaf:nth-child(6) { left: 85%; animation-duration: 23s; animation-delay: 4s; width: 38px; height: 38px; background-color: rgba(70, 160, 70, 0.5); }
+.leaf:nth-child(7) { left: 5%; animation-duration: 21s; animation-delay: 7s; }
+.leaf:nth-child(8) { left: 20%; animation-duration: 24s; animation-delay: 2s; width: 45px; height: 45px; background-color: rgba(80, 180, 80, 0.4); }
+.leaf:nth-child(9) { left: 60%; animation-duration: 26s; animation-delay: 5s; }
+.leaf:nth-child(10) { left: 95%; animation-duration: 17s; animation-delay: 8s; width: 30px; height: 30px; background-color: rgba(50, 140, 50, 0.4); }
+
+
+/* --- Typography --- */
+h1, h2, h3 {
+    font-family: var(--font-secondary);
+    color: var(--color-accent-secondary);
+    text-shadow: 1px 1px 3px var(--color-shadow);
+}
+
+h1 { font-size: 2.5rem; }
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    border-bottom: 3px solid var(--color-accent-primary);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+h3 { font-size: 1.5rem; margin-top: 10px; }
+
+/* --- Header & Navigation (Ensuring visibility) --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: rgba(6, 17, 10, 0.98);
+    backdrop-filter: blur(5px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--color-border);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--color-accent-secondary);
+}
+
+nav a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 0;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+nav a:hover {
+    color: var(--color-accent-secondary);
+    border-bottom: 2px solid var(--color-accent-secondary);
+}
+
+.btn {
+    background-color: var(--color-accent-primary);
+    color: var(--color-text-primary);
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: var(--color-accent-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px var(--color-shadow);
+}
+
+.toggle {
+    background: none;
+    border: 2px solid var(--color-accent-secondary);
+    color: var(--color-accent-secondary);
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.toggle:hover {
+    background-color: var(--color-accent-secondary);
+    color: var(--color-background);
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 100px 5%;
+    min-height: 80vh;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    color: var(--color-text-primary);
+}
+
+.hero-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--color-accent-secondary);
+    border-bottom: none;
+}
+
+.typing::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.tagline {
+    font-style: italic;
+    color: var(--color-accent-secondary);
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.hero-img img {
+    max-width: 400px;
+    height: auto;
+    border-radius: 50%;
+    border: 6px solid var(--color-accent-primary);
+    box-shadow: 0 0 25px var(--color-shadow);
+    transition: transform 0.3s;
+}
+
+.hero-img img:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+/* --- Stats Section --- */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 5%;
+    background-color: var(--color-card-bg);
+    border-top: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
+    position: relative;
+    z-index: 1;
+}
+
+.stat {
+    text-align: center;
+    padding: 20px;
+    border-left: 3px solid var(--color-accent-primary);
+    transition: all 0.3s;
+}
+
+.stat h3 {
+    font-size: 2rem;
+    color: var(--color-accent-secondary);
+}
+
+.stat p {
+    color: var(--color-text-primary);
+    opacity: 0.8;
+}
+
+.stat:hover {
+    background-color: rgba(92, 184, 92, 0.15);
+    transform: translateY(-5px);
+}
+
+/* --- Section Styling (General) --- */
+section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Card/Grid Styling (Education, Projects, Certificates) --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: var(--color-card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.4);
+    border-left: 6px solid var(--color-accent-primary);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 25px var(--color-shadow);
+}
+
+.card p {
+    color: var(--color-text-primary);
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.edu-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--color-accent-secondary);
+}
+
+/* --- Project Specific Styles --- */
+.project-img, .cert-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 2px solid var(--color-border);
+    filter: saturate(1.1);
+}
+
+.project-link {
+    color: var(--color-accent-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: auto;
+    display: block;
+    padding-top: 10px;
+    transition: color 0.3s;
+}
+
+.project-link:hover {
+    color: var(--color-accent-primary);
+}
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.skill-card {
+    background-color: var(--color-card-bg);
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 2px solid var(--color-accent-primary);
+    min-width: 120px;
+}
+
+.skill-card i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.skill-card p {
+    font-family: var(--font-secondary);
+    color: var(--color-accent-secondary);
+    margin: 0;
+}
+
+.skill-card:hover {
+    background-color: var(--color-accent-primary);
+    transform: scale(1.08);
+    box-shadow: 0 0 18px var(--color-shadow);
+}
+
+.skill-card:hover i, .skill-card:hover p {
+    filter: brightness(1.7);
+    color: var(--color-text-primary);
+}
+
+/* --- Certificates Section --- */
+.credential-id {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* --- Contact Section --- */
+#contact p {
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    text-align: center;
+}
+
+.contact-info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.contact-icons {
+    background-color: var(--color-card-bg);
+    padding: 20px 30px;
+    border-radius: 8px;
+    border: 3px solid var(--color-accent-secondary);
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.contact-icons:hover {
+    background-color: var(--color-accent-primary);
+    transform: translateY(-5px);
+}
+
+.contact-icons i {
+    color: var(--color-accent-secondary);
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.contact-icons a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-icons:hover a, .contact-icons:hover i {
+    color: var(--color-text-primary);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 30px 5%;
+    border-top: 2px solid var(--color-border);
+    background-color: var(--color-card-bg);
+    position: relative;
+    z-index: 1;
+}
+
+.social a {
+    color: var(--color-accent-secondary);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social a:hover {
+    color: var(--color-accent-primary);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+    }
+    .hero-text {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+    .hero-img {
+        order: -1;
+        margin-bottom: 30px;
+    }
+    header {
+        flex-direction: column;
+        padding: 15px 5%;
+        position: static;
+    }
+    nav {
+        margin-top: 15px;
+    }
+    nav a {
+        margin: 0 10px;
+        font-size: 0.9rem;
+    }
+    .stats {
+        flex-wrap: wrap;
+    }
+    .stat {
+        flex-basis: 45%;
+        margin: 10px 0;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-text h2 { font-size: 1.5rem; }
+    .hero-img img { max-width: 300px; }
+    .stat {
+        flex-basis: 100%;
+        border-left: none;
+        border-bottom: 2px solid var(--color-accent-primary);
+    }
+    .contact-icons {
+        font-size: 1rem;
+        padding: 15px 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* --- Animated Green Gradient Background --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, #1F6B2C, #4CAF50, #3A5F45, #2E7D32);
+    background-size: 400% 400%;
+    z-index: -1;
+    opacity: 0.15; /* subtle effect */
+    animation: moveGradient 20s ease infinite;
+}
+
+@keyframes moveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Leaves along borders --- */
+.border-leaf {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(76, 175, 80, 0.4);
+    border-radius: 50% 0;
+    transform: rotate(45deg);
+    animation: borderSway 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.border-leaf.left { left: -25px; top: 20%; }
+.border-leaf.right { right: -25px; top: 50%; }
+.border-leaf.bottom-left { left: 10%; bottom: -25px; }
+.border-leaf.bottom-right { right: 15%; bottom: -25px; }
+
+@keyframes borderSway {
+    0% { transform: rotate(35deg) translateY(0); opacity: 0.6; }
+    50% { transform: rotate(55deg) translateY(20px); opacity: 1; }
+    100% { transform: rotate(45deg) translateY(0); opacity: 0.6; }
+}
+
+/* --- Floating pollen-like particles --- */
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: rgba(200,255,180,0.4);
+    border-radius: 50%;
+    animation: floatParticle linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatParticle {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    50% { transform: translateY(-80px) translateX(30px); opacity: 0.5; }
+    100% { transform: translateY(-160px) translateX(60px); opacity: 0; }
+}
+
+/* --- Enhanced hover glow for cards & buttons --- */
+.card:hover, .btn:hover {
+    box-shadow: 0 15px 30px rgba(76, 175, 80, 0.6), 0 0 15px rgba(144, 238, 144, 0.5);
+}
+
+.card:hover::after {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    border-radius: 12px;
+    border: 2px solid rgba(76, 175, 80, 0.4);
+    animation: glowPulse 1.5s infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.2); }
+    100% { box-shadow: 0 0 25px rgba(76, 175, 80, 0.6); }
+}
+
+
+
+
+
+
+
+
+.skills-circle {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 40px auto;
+}
+
+.skills-circle .skill-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: rotate(calc(40deg * var(--i))) translate(160px) rotate(calc(-40deg * var(--i)));
+    transform-origin: center center;
+    text-align: center;
+    transition: transform 0.5s ease, scale 0.3s ease;
+    cursor: pointer;
+}
+
+.skills-circle .skill-card i {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.skills-circle .skill-card p {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Hover effect */
+.skills-circle .skill-card:hover {
+    transform: rotate(calc(40deg * var(--i))) translate(160px) rotate(calc(-40deg * var(--i))) scale(1.2);
+    z-index: 10;
+}
